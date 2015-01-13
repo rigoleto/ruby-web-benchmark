@@ -1,10 +1,13 @@
+require './get_or_create_message'
 
 class HelloWorld
   def call(env)
+    msg = get_or_create_message
+
     [
       200,
       {"Content-Type" => "text/html"},
-      ["hello world"]
+      [msg.message]
     ]
   end
 end

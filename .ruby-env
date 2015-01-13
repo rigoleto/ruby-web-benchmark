@@ -1,0 +1,1 @@
+JRUBY_OPTS="--2.0 -J-Xmn512m -J-Xms2048m -J-Xmx2048m -J-server"

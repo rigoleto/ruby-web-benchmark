@@ -1,10 +1,9 @@
-
 task :bench2 do
   system "wrk -t 2 http://127.0.0.1:8000/"
 end
 
 task :bench do
-  system "ab -r -n 5000 -c 10 http://127.0.0.1:8000/"
+  system "ab -r -n 50000 -c 50 http://127.0.0.1:8000/"
 end
 
 task :thin, [:framework] do |t, args|
@@ -37,7 +36,7 @@ end
 
 task :goliath, [:server] do |t, args|
   system "bundle exec rackup -E production -s #{args.server} -p 8000 goliath.rb"
-  
+
   #system "ruby goliath.rb -p 8000"
 end
 
@@ -59,7 +58,7 @@ task :j_mizuno, [:framework] do |t, args|
 end
 
 task :j_torquebox, [:framework] do |t, args|
-  # torquebox 3 doesn't give a clear way to deploy a specific rackup file, so 
+  # torquebox 3 doesn't give a clear way to deploy a specific rackup file, so
   # this is a quick and dirty hack
   system "rm config.ru"
   system "ln -s #{args.framework}.ru config.ru"
@@ -74,10 +73,3 @@ end
 task :j_trinidad, [:framework] do |t, args|
   system "trinidad -e production -p 8000  -r #{args.framework}.ru"
 end
-
-
-
-
-
-
-
